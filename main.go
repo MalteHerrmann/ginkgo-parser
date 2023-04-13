@@ -39,10 +39,8 @@ func printBlocks(blocks string) {
 
 	for _, match := range matches {
 		whiteSpace := match[1]
-		// blockType := match[2]
 		blockName := match[3]
 
-		// fmt.Printf("%s%s: %s\n", whiteSpace, blockType, blockName)
-		fmt.Printf("%s%s\n", whiteSpace, blockName)
+		fmt.Printf("%s- %s\n", whiteSpace, blockName)
 	}
 }

@@ -1,46 +1,108 @@
-// ginkgo-parser is a tool to parse the contents of a Go test file with BDD style testing
-// using the GinkGo framework.
+// ginkgo-parser is a tool to parse the contents of a Ginkgo BDD test report.
+// An appropriate report file can be generated using `ginkgo --json-report=FILEPATH`.
 //
-// It prints the specification to the terminal, when executed using
+// It converts the specification into a markdown file, which holds a run specs in a nested and
+// human readable format.
 //
-//	go run github.com/MalteHerrmann/ginkgo-parser [FILEPATH]
+// Usage:
+//
+//	go run github.com/MalteHerrmann/ginkgo-parser GINKGO_REPORT [EXPORT_PATH]
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"os"
-	"regexp"
 )
 
-func main() {
-	// Get the filename from command-line argument
-	if len(os.Args) < 2 {
-		log.Fatalf("Usage: go run filename.go <filename>")
-	}
-	filename := os.Args[1]
+// spacesPerIndentation defines the whitespace to be used per indentation level.
+const spacesPerIndentation = "  "
 
-	// Read the Go file
-	content, err := ioutil.ReadFile(filename)
-	if err != nil {
-		log.Fatalf("Failed to read file: %s", err)
+// buildMarkdown recursively builds a markdown string from the given map.
+func buildMarkdown(d map[string]interface{}, indentationLevel int) string {
+	markdown := ""
+	for key, value := range d {
+		if value != nil {
+			markdown += fmt.Sprintf("%s- %s\n", spaces(indentationLevel), key)
+			markdown += buildMarkdown(value.(map[string]interface{}), indentationLevel+1)
+		} else {
+			markdown += fmt.Sprintf("%s- %s\n", spaces(indentationLevel), key)
+		}
 	}
-
-	printBlocks(string(content))
+	return markdown
 }
 
-func printBlocks(blocks string) {
-	// Define unified regex pattern to match Describe, Context, and It blocks
-	regexPattern := `([ \t]*)(Describe|Context|It)\(\s*"(.*?)"\s*,\s*func\(\)\s*{([\s\S]*?)\}\s*\)`
-
-	re := regexp.MustCompile(regexPattern)
-	matches := re.FindAllStringSubmatch(blocks, -1)
-
-	for _, match := range matches {
-		whiteSpace := match[1]
-		blockName := match[3]
-
-		fmt.Printf("%s- %s\n", whiteSpace, blockName)
+// buildMarkdownFromJSON parses the given JSON file and writes the resulting markdown to the given
+// export file.
+func buildMarkdownFromJSON(jsonFile, markdownFile string) {
+	file, err := os.ReadFile(jsonFile)
+	if err != nil {
+		fmt.Printf("Error reading file: %s\n", err)
+		return
 	}
+
+	data := []map[string]interface{}{}
+	err = json.Unmarshal(file, &data)
+	if err != nil {
+		fmt.Printf("Error parsing JSON: %s\n", err)
+		return
+	}
+
+	spec := make(map[string]interface{})
+
+	for _, testsuite := range data {
+		for _, specReport := range testsuite["SpecReports"].([]interface{}) {
+			containerHierarchy := specReport.(map[string]interface{})["ContainerHierarchyTexts"].([]interface{})
+			leafNodeType := specReport.(map[string]interface{})["LeafNodeType"].(string)
+			leafNodeText := specReport.(map[string]interface{})["LeafNodeText"].(string)
+			cleanLeafNode := leafNodeType[:len(leafNodeType)-1] + " " + leafNodeText
+			containerHierarchy = append(containerHierarchy, cleanLeafNode)
+
+			currentSpec := spec
+			for _, item := range containerHierarchy {
+				if currentSpec[item.(string)] == nil {
+					currentSpec[item.(string)] = make(map[string]interface{})
+				}
+				currentSpec = currentSpec[item.(string)].(map[string]interface{})
+			}
+		}
+	}
+
+	markdownContents := buildMarkdown(spec, 0)
+	err = os.WriteFile(markdownFile, []byte(markdownContents), 0644)
+	if err != nil {
+		fmt.Printf("Error writing file: %s\n", err)
+		return
+	}
+
+	fmt.Printf("Markdown file '%s' generated successfully.\n", markdownFile)
+}
+
+// spaces returns a string of n spaces.
+func spaces(n int) string {
+	spaceStr := ""
+	for i := 0; i < n; i++ {
+		spaceStr += spacesPerIndentation
+	}
+	return spaceStr
+}
+
+func main() {
+	if len(os.Args) < 2 || len(os.Args) > 3 {
+		fmt.Println("Usage: ginkgo-parser GINKGO_REPORT [EXPORT_PATH]")
+		return
+	}
+
+	jsonFile := os.Args[1]
+	if _, err := os.Stat(jsonFile); os.IsNotExist(err) {
+		fmt.Printf("File '%s' not found.\n", jsonFile)
+		return
+	}
+
+	exportPath := "parsed_ginkgo_suite.md"
+	if len(os.Args) == 3 {
+		exportPath = os.Args[2]
+	}
+
+	buildMarkdownFromJSON(jsonFile, exportPath)
 }

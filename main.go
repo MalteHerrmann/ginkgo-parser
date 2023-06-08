@@ -15,8 +15,12 @@ import (
 	"os"
 )
 
-// spacesPerIndentation defines the whitespace to be used per indentation level.
-const spacesPerIndentation = "  "
+const (
+	// defaultExportName defines the default name of the export file.
+	defaultExportName = "parsed_ginkgo_suite.md"
+	// spacesPerIndentation defines the whitespace to be used per indentation level.
+	spacesPerIndentation = "  "
+)
 
 // buildMarkdown recursively builds a markdown string from the given map.
 func buildMarkdown(d map[string]interface{}, indentationLevel int) string {
@@ -32,9 +36,9 @@ func buildMarkdown(d map[string]interface{}, indentationLevel int) string {
 	return markdown
 }
 
-// buildMarkdownFromJSON parses the given JSON file and writes the resulting markdown to the given
-// export file.
-func buildMarkdownFromJSON(jsonFile, markdownFile string) {
+// convertGinkgoReportToMarkdown parses the given Ginkgo BDD JSON report and writes
+// the resulting markdown to the given export file.
+func convertGinkgoReportToMarkdown(jsonFile, markdownFile string) {
 	file, err := os.ReadFile(jsonFile)
 	if err != nil {
 		fmt.Printf("Error reading file: %s\n", err)
@@ -52,6 +56,7 @@ func buildMarkdownFromJSON(jsonFile, markdownFile string) {
 
 	for _, testsuite := range data {
 		for _, specReport := range testsuite["SpecReports"].([]interface{}) {
+			// TODO: implement types instead of using interface{}
 			containerHierarchy := specReport.(map[string]interface{})["ContainerHierarchyTexts"].([]interface{})
 			leafNodeType := specReport.(map[string]interface{})["LeafNodeType"].(string)
 			leafNodeText := specReport.(map[string]interface{})["LeafNodeText"].(string)
@@ -99,10 +104,10 @@ func main() {
 		return
 	}
 
-	exportPath := "parsed_ginkgo_suite.md"
+	exportPath := defaultExportName
 	if len(os.Args) == 3 {
 		exportPath = os.Args[2]
 	}
 
-	buildMarkdownFromJSON(jsonFile, exportPath)
+	convertGinkgoReportToMarkdown(jsonFile, exportPath)
 }

@@ -74,7 +74,7 @@ func convertGinkgoReportToMarkdown(jsonFile, markdownFile string) {
 	}
 
 	markdownContents := buildMarkdown(spec, 0)
-	err = os.WriteFile(markdownFile, []byte(markdownContents), 0644)
+	err = os.WriteFile(markdownFile, []byte(markdownContents), 0o644)
 	if err != nil {
 		fmt.Printf("Error writing file: %s\n", err)
 		return

@@ -59,8 +59,15 @@ func convertGinkgoReportToMarkdown(jsonFile, markdownFile string) {
 			// TODO: implement types instead of using interface{}
 			containerHierarchy := specReport.(map[string]interface{})["ContainerHierarchyTexts"].([]interface{})
 			leafNodeType := specReport.(map[string]interface{})["LeafNodeType"].(string)
+			switch leafNodeType {
+			case "It":
+				leafNodeType = "it"
+			default:
+				panic("Unknown leaf node type: " + leafNodeType)
+			}
+
 			leafNodeText := specReport.(map[string]interface{})["LeafNodeText"].(string)
-			cleanLeafNode := leafNodeType[:len(leafNodeType)-1] + " " + leafNodeText
+			cleanLeafNode := leafNodeType + " " + leafNodeText
 			containerHierarchy = append(containerHierarchy, cleanLeafNode)
 
 			currentSpec := spec

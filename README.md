@@ -6,7 +6,7 @@ It creates a Markdown file, that contains nested bullet points to describe the t
 ## Installation
 
 ```bash
-go install github.com/MalteHerrmann/ginkgo-parser
+go install github.com/MalteHerrmann/ginkgo-parser@latest
 ```
 
 ## Usage

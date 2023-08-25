@@ -1,8 +1,8 @@
 // ginkgo-parser is a tool to parse the contents of a Ginkgo BDD test report.
 // An appropriate report file can be generated using `ginkgo --json-report=FILEPATH`.
 //
-// It converts the specification into a markdown file, which holds a run specs in a nested and
-// human readable format.
+// It converts the specification into a markdown file, which list all run specs
+// in a nested and human readable format.
 //
 // Usage:
 //
@@ -11,8 +11,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/MalteHerrmann/ginkgo-parser/report"
 	"os"
+
+	"github.com/MalteHerrmann/ginkgo-parser/report"
 )
 
 // defaultExportName defines the default name of the export file.

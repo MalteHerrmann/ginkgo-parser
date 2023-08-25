@@ -1,3 +1,6 @@
+// Package report provides functionality to parse
+// a Ginkgo BDD JSON report, and convert its contents
+// to a nested markdown file.
 package report
 
 import (

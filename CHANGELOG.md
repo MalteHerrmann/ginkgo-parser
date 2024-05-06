@@ -26,6 +26,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### Improvements
 
+- (cli) [#6](https://github.com/MalteHerrmann/ginkgo-parser/6) Use Cobra for CLI implementation.
 - (ci) [#5](https://github.com/MalteHerrmann/ginkgo-parser/5) Add linter to CI.
 
 ## [v0.1.0](https://github.com/MalteHerrmann/ginkgo-parser/releases/tag/v0.1.0) - 2023-08-24

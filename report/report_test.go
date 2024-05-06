@@ -3,7 +3,9 @@ package report_test
 import (
 	"testing"
 
+	//nolint:revive // Okay to use dot imports for Ginkgo
 	. "github.com/onsi/ginkgo/v2"
+	//nolint:revive // Okay to use dot imports for Ginkgo
 	. "github.com/onsi/gomega"
 
 	"github.com/MalteHerrmann/ginkgo-parser/report"

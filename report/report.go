@@ -15,12 +15,12 @@ import (
 func GetReportsFromJSON(jsonFile string) ([]ginkgotypes.Report, error) {
 	reportBytes, err := os.ReadFile(jsonFile)
 	if err != nil {
-		return nil, fmt.Errorf("error reading file: %w\n", err)
+		return nil, fmt.Errorf("error reading file: %w", err)
 	}
 
 	var reports []ginkgotypes.Report
 	if err := json.Unmarshal(reportBytes, &reports); err != nil {
-		return nil, fmt.Errorf("error parsing JSON: %w\n", err)
+		return nil, fmt.Errorf("error parsing JSON: %w", err)
 	}
 
 	return reports, nil

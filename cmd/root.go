@@ -18,12 +18,12 @@ var rootCmd = &cobra.Command{
 	Use:   "ginkgo-parser REPORT_PATH EXPORT_PATH [flags]",
 	Short: "Parses the generated JSON report from a Ginkgo run and exports the test information to Markdown or HTML.",
 	Long: `This tool parses the JSON reports, that can be generated using the Ginkgo BDD
-  testing binary.
+testing binary.
 
-  By default, the tool generates a Markdown document, that lists the ran
-  specs in a nested and sorted way.
+By default, the tool generates a Markdown document, that lists the ran
+specs in a nested and sorted way.
 
-  Optionally, an HTML document can be generated.`,
+Optionally, an HTML document can be generated.`,
 	Args: cobra.ExactArgs(2),
 	RunE: func(_ *cobra.Command, args []string) error {
 		jsonFile := args[0]

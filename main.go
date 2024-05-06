@@ -4,42 +4,13 @@
 // It converts the specification into a markdown file, which list all run specs
 // in a nested and human readable format.
 //
-// Usage:
-//
-//	go run github.com/MalteHerrmann/ginkgo-parser GINKGO_REPORT [EXPORT_PATH]
+// Optionally, an HTML file can be generated.
 package main
 
 import (
-	"fmt"
-	"os"
-
-	"github.com/MalteHerrmann/ginkgo-parser/report"
+	"github.com/MalteHerrmann/ginkgo-parser/cmd"
 )
 
-// defaultExportName defines the default name of the export file.
-const defaultExportName = "parsed_ginkgo_suite.md"
-
 func main() {
-	// TODO: use cobra CLI library
-	if len(os.Args) < 2 || len(os.Args) > 3 {
-		fmt.Println("Usage: ginkgo-parser GINKGO_REPORT [EXPORT_PATH]")
-		return
-	}
-
-	jsonFile := os.Args[1]
-	if _, err := os.Stat(jsonFile); os.IsNotExist(err) {
-		fmt.Printf("File '%s' not found.\n", jsonFile)
-		return
-	}
-
-	exportPath := defaultExportName
-	if len(os.Args) == 3 {
-		exportPath = os.Args[2]
-	}
-
-	err := report.ConvertGinkgoReportToMarkdown(jsonFile, exportPath)
-	if err != nil {
-		fmt.Printf("Error: %s\n", err)
-		return
-	}
+	cmd.Execute()
 }

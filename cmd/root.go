@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	EXPORT_TYPE_MD   = "md"
-	EXPORT_TYPE_HTML = "html"
+	ExportTypeMD   = "md"
+	ExportTypeHTML = "html"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -28,16 +28,16 @@ Optionally, an HTML document can be generated.`,
 	RunE: func(_ *cobra.Command, args []string) error {
 		jsonFile := args[0]
 		if _, err := os.Stat(jsonFile); os.IsNotExist(err) {
-			return fmt.Errorf("File '%s' not found.\n", jsonFile)
+			return fmt.Errorf("file not found: %s", jsonFile)
 		}
 
 		exportPath := os.Args[1]
 
 		switch exportType {
-		case EXPORT_TYPE_MD:
+		case ExportTypeMD:
 			return report.ConvertGinkgoReportToMarkdown(jsonFile, exportPath)
 		default:
-			return fmt.Errorf("Unsupported export type: %s", exportType)
+			return fmt.Errorf("unsupported export type: %s", exportType)
 		}
 	},
 }
@@ -67,7 +67,7 @@ func init() {
 	rootCmd.Flags().StringVar(
 		&exportType,
 		"type",
-		EXPORT_TYPE_MD,
-		fmt.Sprintf("The type of the exported file. Can be %q or %q.", EXPORT_TYPE_MD, EXPORT_TYPE_HTML),
+		ExportTypeMD,
+		fmt.Sprintf("The type of the exported file. Can be %q or %q.", ExportTypeMD, ExportTypeHTML),
 	)
 }

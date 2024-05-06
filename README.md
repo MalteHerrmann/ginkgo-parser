@@ -11,6 +11,8 @@ go install github.com/MalteHerrmann/ginkgo-parser@latest
 
 ## Usage
 
+This tool is built using [Cobra CLI](https://cobra.dev/). To check out the documentation, run the tool with the `--help` flag:
+
 ```bash
-ginkgo-parser GINKGO_REPORT [EXPORT_PATH]
+ginkgo-parser --help
 ```

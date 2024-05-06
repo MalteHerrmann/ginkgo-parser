@@ -1,0 +1,32 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ginkgo Report</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <h1>Ginkgo Test Report</h1>
+  {{ range .Reports }}
+    {{ template "report" . }}
+  {{ end }}
+</body>
+
+</html>
+{{ end }}
+
+{{ block "report" . }}
+<div class="report">
+  {{ range .SpecReports }}
+    {{ template "spec-report" . }}
+  {{ end }}
+{{ end }}
+
+{{ block "spec-report" . }}
+  <ul> FILL ME! </ul>
+{{ end }}
+

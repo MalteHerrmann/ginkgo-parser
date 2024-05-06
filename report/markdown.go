@@ -15,18 +15,18 @@ const spacesPerIndentation = "  "
 func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
 	reports, err := GetReportsFromJSON(jsonFile)
 	if err != nil {
-		return fmt.Errorf("error parsing JSON: %w\n", err)
+		return fmt.Errorf("error parsing JSON: %w", err)
 	}
 
 	spec, err := buildSpecMap(reports)
 	if err != nil {
-		return fmt.Errorf("Error building spec map: %w\n", err)
+		return fmt.Errorf("error building spec map: %w", err)
 	}
 
 	markdownContents := buildMarkdown(spec, 0)
-	err = os.WriteFile(markdownFile, []byte(markdownContents), 0o644)
+	err = os.WriteFile(markdownFile, []byte(markdownContents), 0o600)
 	if err != nil {
-		return fmt.Errorf("Error writing file: %w\n", err)
+		return fmt.Errorf("error writing file: %w", err)
 	}
 
 	fmt.Printf("Markdown file '%s' generated successfully.\n", markdownFile)
@@ -49,7 +49,7 @@ func buildSpecMap(reports []ginkgotypes.Report) (map[string]interface{}, error) 
 			case ginkgotypes.NodeTypeIt:
 				leafNodeTypeStr = "it"
 			default:
-				panic(fmt.Sprintf("Unknown leaf node type: %d", leafNodeType))
+				return nil, fmt.Errorf("unknown leaf node type: %d", leafNodeType)
 			}
 
 			leafNodeText := specReport.LeafNodeText

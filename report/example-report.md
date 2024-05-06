@@ -1,0 +1,6 @@
+- Example
+  - it should be true
+  - it should be false
+  - Nested table
+    - it 1 is 2
+    - it 1 is 1

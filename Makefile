@@ -17,3 +17,13 @@ $(BUILD_TARGETS):
 
 lint:
 	golangci-lint run --out-format=tab
+
+###############################################################################
+###                                Testing                                  ###
+###############################################################################
+
+TEST_PACKAGES=$(shell go list ./... | grep -v '/example-report$$')
+
+test:
+	go test -mod=readonly $(TEST_PACKAGES)
+

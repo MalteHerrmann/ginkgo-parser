@@ -16,10 +16,14 @@ func TestReport(t *testing.T) {
 
 var _ = Describe("Parsing a Ginkgo JSON file", func() {
 	It("should return the expected reports", func() {
-		// TODO: report format here really is for the example markdown output
 		report, err := report.GetReportsFromJSON("testdata/example_report.json")
 		Expect(err).To(BeNil(), "expected no error parsing the report")
 		Expect(report).To(HaveLen(1), "expected one top-level item")
-		Expect(report).To(HaveKey("Example"))
+		Expect(
+			report[0].SpecReports,
+		).To(
+			HaveLen(report[0].PreRunStats.SpecsThatWillRun),
+			"expected different amount of tests to be run",
+		)
 	})
 })

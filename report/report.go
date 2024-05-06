@@ -17,15 +17,31 @@ const spacesPerIndentation = "  "
 // ConvertGinkgoReportToMarkdown parses the given Ginkgo BDD JSON report and writes
 // the resulting markdown to the given export file.
 func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
-	file, err := os.ReadFile(jsonFile)
+	reportBytes, err := os.ReadFile(jsonFile)
 	if err != nil {
 		return fmt.Errorf("error reading file: %w\n", err)
 	}
 
-	var reports []ginkgotypes.Report
-	err = json.Unmarshal(file, &reports)
+	spec, err := ParseGinkgoJSON(reportBytes)
 	if err != nil {
 		return fmt.Errorf("error parsing JSON: %w\n", err)
+	}
+
+	markdownContents := buildMarkdown(spec, 0)
+	err = os.WriteFile(markdownFile, []byte(markdownContents), 0o644)
+	if err != nil {
+		return fmt.Errorf("Error writing file: %w\n", err)
+	}
+
+	fmt.Printf("Markdown file '%s' generated successfully.\n", markdownFile)
+	return nil
+}
+
+// ParseGinkgoJSON parses the given JSON data into Ginkgo reports.
+func ParseGinkgoJSON(data []byte) (map[string]interface{}, error) {
+	var reports []ginkgotypes.Report
+	if err := json.Unmarshal(data, &reports); err != nil {
+		return nil, fmt.Errorf("error parsing JSON: %w\n", err)
 	}
 
 	spec := make(map[string]interface{})
@@ -59,14 +75,7 @@ func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
 		}
 	}
 
-	markdownContents := buildMarkdown(spec, 0)
-	err = os.WriteFile(markdownFile, []byte(markdownContents), 0o644)
-	if err != nil {
-		return fmt.Errorf("Error writing file: %w\n", err)
-	}
-
-	fmt.Printf("Markdown file '%s' generated successfully.\n", markdownFile)
-	return nil
+	return spec, nil
 }
 
 // buildMarkdown is a recursive function to build a markdown string from the given map of nested maps.

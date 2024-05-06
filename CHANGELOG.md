@@ -15,29 +15,22 @@ Change log entries are to be added to the Unreleased section under the
 appropriate stanza (see below). Each entry should ideally include a tag and
 the Github issue reference in the following format:
 
-* (<tag>) \#<issue-number> message
-
-The issue numbers will later be link-ified during the release process so you do
-not have to worry about including a link manually, but you can if you wish.
-
-Types of changes (Stanzas):
-
-"Features" for new features.
-"Improvements" for changes in existing functionality.
-"Deprecated" for soon-to-be removed features.
-"Bug Fixes" for any bug fixes.
-"Client Breaking" for breaking CLI commands and REST routes used by end-users.
-"API Breaking" for breaking exported APIs used by developers building on SDK.
-"State Machine Breaking" for any changes that result in a different AppState given same genesisState and txList.
+* (<tag>) [#<issue-number>](LINK) message
 
 Ref: https://keepachangelog.com/en/1.0.0/
 -->
 
 # Changelog
 
+## Unreleased
+
+### Improvements
+
+- (ci) [#5](https://github.com/MalteHerrmann/ginkgo-parser/5) Add linter to CI.
+
 ## [v0.1.0](https://github.com/MalteHerrmann/ginkgo-parser/releases/tag/v0.1.0) - 2023-08-24
 
 ### Features
 
-- Parses a given JSON report created by the Ginkgo BDD tool
-- Creates a markdown file listing the ran tests as bullet points
+- (report) Parses a given JSON report created by the Ginkgo BDD tool
+- (md) Creates a markdown file listing the ran tests as bullet points

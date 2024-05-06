@@ -1,3 +1,5 @@
+// NOTE: This is only a sample test file to generate a report file
+// and is not a part of the package.
 package example_test
 
 import (

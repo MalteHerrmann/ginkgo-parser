@@ -20,6 +20,7 @@ import (
 const defaultExportName = "parsed_ginkgo_suite.md"
 
 func main() {
+	// TODO: use cobra CLI library
 	if len(os.Args) < 2 || len(os.Args) > 3 {
 		fmt.Println("Usage: ginkgo-parser GINKGO_REPORT [EXPORT_PATH]")
 		return

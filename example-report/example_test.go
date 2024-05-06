@@ -21,6 +21,12 @@ var _ = Describe("Example", func() {
 		Expect(false).To(BeFalse())
 	})
 
+	Context("skipped tests", func() {
+		It("should be skipped", func() {
+			Skip("skipping this test")
+		})
+	})
+
 	DescribeTable("Nested table", func(a, b int) {
 		Expect(a).To(Equal(b))
 	},

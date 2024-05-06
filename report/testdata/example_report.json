@@ -7,14 +7,14 @@
     "SuiteHasProgrammaticFocus": false,
     "SpecialSuiteFailureReasons": null,
     "PreRunStats": {
-      "TotalSpecs": 4,
-      "SpecsThatWillRun": 4
+      "TotalSpecs": 5,
+      "SpecsThatWillRun": 5
     },
-    "StartTime": "2024-05-05T23:32:31.305101+02:00",
-    "EndTime": "2024-05-05T23:32:31.306704+02:00",
-    "RunTime": 1602583,
+    "StartTime": "2024-05-06T09:04:23.74877+02:00",
+    "EndTime": "2024-05-06T09:04:23.750442+02:00",
+    "RunTime": 1672167,
     "SuiteConfig": {
-      "RandomSeed": 1714944750,
+      "RandomSeed": 1714979063,
       "RandomizeAllSpecs": false,
       "FocusStrings": null,
       "SkipStrings": null,
@@ -28,7 +28,7 @@
       "DryRun": false,
       "PollProgressAfter": 0,
       "PollProgressInterval": 0,
-      "Timeout": 3599554332875,
+      "Timeout": 3599507358958,
       "EmitSpecProgress": false,
       "OutputInterceptorMode": "",
       "SourceRoots": null,
@@ -59,9 +59,9 @@
         "LeafNodeLabels": [],
         "LeafNodeText": "should be true",
         "State": "passed",
-        "StartTime": "2024-05-05T23:32:31.305294+02:00",
-        "EndTime": "2024-05-05T23:32:31.305495+02:00",
-        "RunTime": 201291,
+        "StartTime": "2024-05-06T09:04:23.748949+02:00",
+        "EndTime": "2024-05-06T09:04:23.749167+02:00",
+        "RunTime": 218000,
         "ParallelProcess": 1,
         "NumAttempts": 1,
         "MaxFlakeAttempts": 0,
@@ -75,7 +75,7 @@
             },
             "TimelineLocation": {
               "Order": 1,
-              "Time": "2024-05-05T23:32:31.305367+02:00"
+              "Time": "2024-05-06T09:04:23.749025+02:00"
             },
             "Message": "should be true",
             "NodeType": "It"
@@ -88,10 +88,10 @@
             },
             "TimelineLocation": {
               "Order": 3,
-              "Time": "2024-05-05T23:32:31.305492+02:00"
+              "Time": "2024-05-06T09:04:23.749164+02:00"
             },
             "Message": "should be true",
-            "Duration": 124959,
+            "Duration": 139542,
             "NodeType": "It"
           }
         ]
@@ -117,9 +117,9 @@
         "LeafNodeLabels": [],
         "LeafNodeText": "should be false",
         "State": "passed",
-        "StartTime": "2024-05-05T23:32:31.305513+02:00",
-        "EndTime": "2024-05-05T23:32:31.30557+02:00",
-        "RunTime": 56958,
+        "StartTime": "2024-05-06T09:04:23.749184+02:00",
+        "EndTime": "2024-05-06T09:04:23.749207+02:00",
+        "RunTime": 22667,
         "ParallelProcess": 1,
         "NumAttempts": 1,
         "MaxFlakeAttempts": 0,
@@ -133,7 +133,7 @@
             },
             "TimelineLocation": {
               "Order": 4,
-              "Time": "2024-05-05T23:32:31.305515+02:00"
+              "Time": "2024-05-06T09:04:23.749186+02:00"
             },
             "Message": "should be false",
             "NodeType": "It"
@@ -146,10 +146,10 @@
             },
             "TimelineLocation": {
               "Order": 6,
-              "Time": "2024-05-05T23:32:31.305535+02:00"
+              "Time": "2024-05-06T09:04:23.749198+02:00"
             },
             "Message": "should be false",
-            "Duration": 20667,
+            "Duration": 12208,
             "NodeType": "It"
           }
         ]
@@ -157,7 +157,7 @@
       {
         "ContainerHierarchyTexts": [
           "Example",
-          "Nested table"
+          "skipped tests"
         ],
         "ContainerHierarchyLocations": [
           {
@@ -176,95 +176,31 @@
         "LeafNodeType": "It",
         "LeafNodeLocation": {
           "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-          "LineNumber": 27
+          "LineNumber": 25
         },
         "LeafNodeLabels": [],
-        "LeafNodeText": "1 is 1",
-        "State": "passed",
-        "StartTime": "2024-05-05T23:32:31.305643+02:00",
-        "EndTime": "2024-05-05T23:32:31.305785+02:00",
-        "RunTime": 141584,
-        "ParallelProcess": 1,
-        "NumAttempts": 1,
-        "MaxFlakeAttempts": 0,
-        "MaxMustPassRepeatedly": 0,
-        "SpecEvents": [
-          {
-            "SpecEventType": "Node",
-            "CodeLocation": {
-              "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-              "LineNumber": 27
-            },
-            "TimelineLocation": {
-              "Order": 7,
-              "Time": "2024-05-05T23:32:31.305646+02:00"
-            },
-            "Message": "1 is 1",
-            "NodeType": "It"
-          },
-          {
-            "SpecEventType": "Node (End)",
-            "CodeLocation": {
-              "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-              "LineNumber": 27
-            },
-            "TimelineLocation": {
-              "Order": 9,
-              "Time": "2024-05-05T23:32:31.305781+02:00"
-            },
-            "Message": "1 is 1",
-            "Duration": 135708,
-            "NodeType": "It"
-          }
-        ]
-      },
-      {
-        "ContainerHierarchyTexts": [
-          "Example",
-          "Nested table"
-        ],
-        "ContainerHierarchyLocations": [
-          {
-            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-            "LineNumber": 15
-          },
-          {
-            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-            "LineNumber": 24
-          }
-        ],
-        "ContainerHierarchyLabels": [
-          [],
-          []
-        ],
-        "LeafNodeType": "It",
-        "LeafNodeLocation": {
-          "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-          "LineNumber": 28
-        },
-        "LeafNodeLabels": [],
-        "LeafNodeText": "1 is 2",
-        "State": "failed",
-        "StartTime": "2024-05-05T23:32:31.305805+02:00",
-        "EndTime": "2024-05-05T23:32:31.306431+02:00",
-        "RunTime": 625792,
+        "LeafNodeText": "should be skipped",
+        "State": "skipped",
+        "StartTime": "2024-05-06T09:04:23.749231+02:00",
+        "EndTime": "2024-05-06T09:04:23.74955+02:00",
+        "RunTime": 319041,
         "ParallelProcess": 1,
         "Failure": {
-          "Message": "Expected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 2",
+          "Message": "skipping this test",
           "Location": {
             "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-            "LineNumber": 25,
-            "FullStackTrace": "github.com/MalteHerrmann/ginkgo-parser/example-report_test.init.func1.3(0x0?, 0x2)\n\t/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go:25 +0xb4\nreflect.Value.call({0x1009f4360?, 0x100a73ab0?, 0x13?}, {0x10090cedb, 0x4}, {0x14000280630, 0x2, 0x2?})\n\t/opt/homebrew/Cellar/go/1.22.2/libexec/src/reflect/value.go:596 +0x970\nreflect.Value.Call({0x1009f4360?, 0x100a73ab0?, 0x100a7e008?}, {0x14000280630?, 0x0?, 0x100e14888?})\n\t/opt/homebrew/Cellar/go/1.22.2/libexec/src/reflect/value.go:380 +0x94"
+            "LineNumber": 26,
+            "FullStackTrace": "github.com/MalteHerrmann/ginkgo-parser/example-report_test.init.func1.3.1()\n\t/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go:26 +0x34"
           },
           "TimelineLocation": {
-            "Order": 11,
-            "Time": "2024-05-05T23:32:31.306421+02:00"
+            "Order": 8,
+            "Time": "2024-05-06T09:04:23.749541+02:00"
           },
           "FailureNodeContext": "leaf-node",
           "FailureNodeType": "It",
           "FailureNodeLocation": {
             "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-            "LineNumber": 28
+            "LineNumber": 25
           },
           "ProgressReport": {
             "LeafNodeLocation": {},
@@ -286,11 +222,168 @@
             "SpecEventType": "Node",
             "CodeLocation": {
               "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-              "LineNumber": 28
+              "LineNumber": 25
+            },
+            "TimelineLocation": {
+              "Order": 7,
+              "Time": "2024-05-06T09:04:23.749233+02:00"
+            },
+            "Message": "should be skipped",
+            "NodeType": "It"
+          },
+          {
+            "SpecEventType": "Node (End)",
+            "CodeLocation": {
+              "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+              "LineNumber": 25
+            },
+            "TimelineLocation": {
+              "Order": 9,
+              "Time": "2024-05-06T09:04:23.749548+02:00"
+            },
+            "Message": "should be skipped",
+            "Duration": 314333,
+            "NodeType": "It"
+          }
+        ]
+      },
+      {
+        "ContainerHierarchyTexts": [
+          "Example",
+          "Nested table"
+        ],
+        "ContainerHierarchyLocations": [
+          {
+            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+            "LineNumber": 15
+          },
+          {
+            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+            "LineNumber": 30
+          }
+        ],
+        "ContainerHierarchyLabels": [
+          [],
+          []
+        ],
+        "LeafNodeType": "It",
+        "LeafNodeLocation": {
+          "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+          "LineNumber": 33
+        },
+        "LeafNodeLabels": [],
+        "LeafNodeText": "1 is 1",
+        "State": "passed",
+        "StartTime": "2024-05-06T09:04:23.749573+02:00",
+        "EndTime": "2024-05-06T09:04:23.749729+02:00",
+        "RunTime": 155792,
+        "ParallelProcess": 1,
+        "NumAttempts": 1,
+        "MaxFlakeAttempts": 0,
+        "MaxMustPassRepeatedly": 0,
+        "SpecEvents": [
+          {
+            "SpecEventType": "Node",
+            "CodeLocation": {
+              "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+              "LineNumber": 33
             },
             "TimelineLocation": {
               "Order": 10,
-              "Time": "2024-05-05T23:32:31.305807+02:00"
+              "Time": "2024-05-06T09:04:23.749575+02:00"
+            },
+            "Message": "1 is 1",
+            "NodeType": "It"
+          },
+          {
+            "SpecEventType": "Node (End)",
+            "CodeLocation": {
+              "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+              "LineNumber": 33
+            },
+            "TimelineLocation": {
+              "Order": 12,
+              "Time": "2024-05-06T09:04:23.749727+02:00"
+            },
+            "Message": "1 is 1",
+            "Duration": 151875,
+            "NodeType": "It"
+          }
+        ]
+      },
+      {
+        "ContainerHierarchyTexts": [
+          "Example",
+          "Nested table"
+        ],
+        "ContainerHierarchyLocations": [
+          {
+            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+            "LineNumber": 15
+          },
+          {
+            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+            "LineNumber": 30
+          }
+        ],
+        "ContainerHierarchyLabels": [
+          [],
+          []
+        ],
+        "LeafNodeType": "It",
+        "LeafNodeLocation": {
+          "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+          "LineNumber": 34
+        },
+        "LeafNodeLabels": [],
+        "LeafNodeText": "1 is 2",
+        "State": "failed",
+        "StartTime": "2024-05-06T09:04:23.749744+02:00",
+        "EndTime": "2024-05-06T09:04:23.750163+02:00",
+        "RunTime": 419750,
+        "ParallelProcess": 1,
+        "Failure": {
+          "Message": "Expected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 2",
+          "Location": {
+            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+            "LineNumber": 31,
+            "FullStackTrace": "github.com/MalteHerrmann/ginkgo-parser/example-report_test.init.func1.4(0x0?, 0x2)\n\t/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go:31 +0xb4\nreflect.Value.call({0x102b64360?, 0x102be3ac0?, 0x13?}, {0x102a7d45b, 0x4}, {0x140001c2ff0, 0x2, 0x2?})\n\t/opt/homebrew/Cellar/go/1.22.2/libexec/src/reflect/value.go:596 +0x970\nreflect.Value.Call({0x102b64360?, 0x102be3ac0?, 0x102bee028?}, {0x140001c2ff0?, 0x0?, 0x10320f848?})\n\t/opt/homebrew/Cellar/go/1.22.2/libexec/src/reflect/value.go:380 +0x94"
+          },
+          "TimelineLocation": {
+            "Order": 14,
+            "Time": "2024-05-06T09:04:23.750154+02:00"
+          },
+          "FailureNodeContext": "leaf-node",
+          "FailureNodeType": "It",
+          "FailureNodeLocation": {
+            "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+            "LineNumber": 34
+          },
+          "ProgressReport": {
+            "LeafNodeLocation": {},
+            "SpecStartTime": "0001-01-01T00:00:00Z",
+            "CurrentNodeLocation": {},
+            "CurrentNodeStartTime": "0001-01-01T00:00:00Z",
+            "CurrentStepLocation": {},
+            "CurrentStepStartTime": "0001-01-01T00:00:00Z",
+            "TimelineLocation": {
+              "Time": "0001-01-01T00:00:00Z"
+            }
+          }
+        },
+        "NumAttempts": 1,
+        "MaxFlakeAttempts": 0,
+        "MaxMustPassRepeatedly": 0,
+        "SpecEvents": [
+          {
+            "SpecEventType": "Node",
+            "CodeLocation": {
+              "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
+              "LineNumber": 34
+            },
+            "TimelineLocation": {
+              "Order": 13,
+              "Time": "2024-05-06T09:04:23.749745+02:00"
             },
             "Message": "1 is 2",
             "NodeType": "It"
@@ -299,14 +392,14 @@
             "SpecEventType": "Node (End)",
             "CodeLocation": {
               "FileName": "/Users/malte/dev/MalteHerrmann/ginkgo-parser/example-report/example_test.go",
-              "LineNumber": 28
+              "LineNumber": 34
             },
             "TimelineLocation": {
-              "Order": 12,
-              "Time": "2024-05-05T23:32:31.306429+02:00"
+              "Order": 15,
+              "Time": "2024-05-06T09:04:23.750161+02:00"
             },
             "Message": "1 is 2",
-            "Duration": 621500,
+            "Duration": 415917,
             "NodeType": "It"
           }
         ]

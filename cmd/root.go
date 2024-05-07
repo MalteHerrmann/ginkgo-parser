@@ -31,10 +31,12 @@ Optionally, an HTML document can be generated.`,
 			return fmt.Errorf("file not found: %s", jsonFile)
 		}
 
-		exportPath := os.Args[1]
+		exportPath := args[1]
 		switch exportType {
 		case ExportTypeMD:
 			return report.ConvertGinkgoReportToMarkdown(jsonFile, exportPath)
+		case ExportTypeHTML:
+			return report.ConvertGinkgoReportToHTML(jsonFile, exportPath)
 		default:
 			return fmt.Errorf("unsupported export type: %s", exportType)
 		}

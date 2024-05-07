@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ginkgo Report</title>
   <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -20,13 +21,26 @@
 {{ end }}
 
 {{ block "report" . }}
-<div class="report">
+<div class="report p-8 divide-y-8">
   {{ range .SpecReports }}
     {{ template "spec-report" . }}
   {{ end }}
+</div>
 {{ end }}
 
 {{ block "spec-report" . }}
-  <ul> FILL ME! </ul>
+<div class="spec-report border-black">
+  <div class="border-solid border-inherit rounded-full" style="background: green">
+    {{ range .ContainerHierarchyTexts }} {{ . }} {{ end }}
+  </div>
+  {{ if .Failure.Message }}
+  <div class="flex">
+    <div class="size-12" style="background:red"></div>
+    <div style="background:gray">
+      State: {{ .State }}, Message: {{ .Failure.Message }}
+    </div>
+  </div>
+  {{ end }}
+</div>
 {{ end }}
 

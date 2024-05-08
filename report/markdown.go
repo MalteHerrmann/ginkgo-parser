@@ -3,8 +3,6 @@ package report
 import (
 	"fmt"
 	"os"
-
-	ginkgotypes "github.com/onsi/ginkgo/v2/types"
 )
 
 // spacesPerIndentation defines the whitespace to be used per indentation level.
@@ -18,7 +16,7 @@ func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
 		return fmt.Errorf("error parsing JSON: %w", err)
 	}
 
-	spec, err := buildSpecMap(reports)
+	spec, err := BuildNestedContents(reports)
 	if err != nil {
 		return fmt.Errorf("error building spec map: %w", err)
 	}
@@ -33,51 +31,13 @@ func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
 	return nil
 }
 
-// buildSpecMap recursively builds a map of nested maps from the given Ginkgo reports.
-// This is used to convert the typed structure of the Ginkgo reports
-// to a nested Markdown structure.
-func buildSpecMap(reports []ginkgotypes.Report) (map[string]interface{}, error) {
-	spec := make(map[string]interface{})
-
-	for _, report := range reports {
-		for _, specReport := range report.SpecReports {
-			containerHierarchy := specReport.ContainerHierarchyTexts
-
-			var leafNodeTypeStr string
-			leafNodeType := specReport.LeafNodeType
-			switch leafNodeType {
-			case ginkgotypes.NodeTypeIt:
-				leafNodeTypeStr = "it"
-			default:
-				return nil, fmt.Errorf("unknown leaf node type: %d", leafNodeType)
-			}
-
-			leafNodeText := specReport.LeafNodeText
-			cleanLeafNode := leafNodeTypeStr + " " + leafNodeText
-			containerHierarchy = append(containerHierarchy, cleanLeafNode)
-
-			currentSpec := spec
-			for _, item := range containerHierarchy {
-				// If the item is not yet in the map, create a new map for the underlying levels
-				// and add the item to the map.
-				if currentSpec[item] == nil {
-					currentSpec[item] = make(map[string]interface{})
-				}
-				currentSpec = currentSpec[item].(map[string]interface{})
-			}
-		}
-	}
-
-	return spec, nil
-}
-
 // buildMarkdown is a recursive function to build a markdown string from the given map of nested maps.
-func buildMarkdown(contents map[string]interface{}, indentationLevel int) string {
+func buildMarkdown(spec NestedContents, indentationLevel int) string {
 	markdown := ""
-	for key, value := range contents {
-		if value != nil {
+	for key, value := range spec.Contents {
+		if len(value.Contents) != 0 {
 			markdown += fmt.Sprintf("%s- %s\n", spaces(indentationLevel), key)
-			markdown += buildMarkdown(value.(map[string]interface{}), indentationLevel+1)
+			markdown += buildMarkdown(value, indentationLevel+1)
 		} else {
 			markdown += fmt.Sprintf("%s- %s\n", spaces(indentationLevel), key)
 		}

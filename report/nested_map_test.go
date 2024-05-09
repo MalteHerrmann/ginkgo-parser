@@ -28,8 +28,6 @@ var _ = Describe("Building the nested map", Ordered, func() {
 		spec, err = report.BuildNestedContents(reports)
 		Expect(err).To(BeNil(), "expected no error building the spec map")
 		Expect(spec).ToNot(BeNil(), "expected a non-nil spec map")
-		Expect(spec.HasFailed).To(BeFalse(), "expected no failed specs")
-		Expect(spec.HasSkipped).To(BeFalse(), "expected no skipped specs")
 		Expect(spec.Contents).To(HaveKey("Example"), "expected a different top-level key")
 	})
 
@@ -51,5 +49,28 @@ var _ = Describe("Building the nested map", Ordered, func() {
 			HaveKey("it should be skipped"),
 			"expected key to be present",
 		)
+	})
+
+	It("should show the correct failed and skipped states", func() {
+		Expect(spec.Contents["Example"].HasFailed).To(BeTrue())
+		Expect(spec.Contents["Example"].HasSkipped).To(BeTrue())
+
+		Expect(spec.Contents["Example"].Contents["it should be true"].HasFailed).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["it should be true"].HasSkipped).To(BeFalse())
+
+		Expect(spec.Contents["Example"].Contents["it should be false"].HasFailed).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["it should be false"].HasSkipped).To(BeFalse())
+
+		Expect(spec.Contents["Example"].Contents["Nested table"].HasFailed).To(BeTrue())
+		Expect(spec.Contents["Example"].Contents["Nested table"].HasSkipped).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["Nested table"].Contents["it 1 is 1"].HasFailed).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["Nested table"].Contents["it 1 is 1"].HasSkipped).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["Nested table"].Contents["it 1 is 2"].HasFailed).To(BeTrue())
+		Expect(spec.Contents["Example"].Contents["Nested table"].Contents["it 1 is 2"].HasSkipped).To(BeFalse())
+
+		Expect(spec.Contents["Example"].Contents["skipped tests"].HasFailed).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["skipped tests"].HasSkipped).To(BeTrue())
+		Expect(spec.Contents["Example"].Contents["skipped tests"].Contents["it should be skipped"].HasFailed).To(BeFalse())
+		Expect(spec.Contents["Example"].Contents["skipped tests"].Contents["it should be skipped"].HasSkipped).To(BeTrue())
 	})
 })

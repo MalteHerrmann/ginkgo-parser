@@ -26,6 +26,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### Improvements
 
+- (report) [#8](https://github.com/MalteHerrmann/ginkgo-parser/8) Check for failed and skipped tests.
 - (report) [#7](https://github.com/MalteHerrmann/ginkgo-parser/7) Refactor nested contents for Markdown and HTML reports.
 - (cli) [#6](https://github.com/MalteHerrmann/ginkgo-parser/6) Use Cobra for CLI implementation.
 - (ci) [#5](https://github.com/MalteHerrmann/ginkgo-parser/5) Add linter to CI.

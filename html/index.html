@@ -31,16 +31,15 @@
 {{ block "spec-report" . }}
 <div class="spec-report border-black">
   <div class="border-solid border-inherit rounded-full" style="background: green">
-    {{ range .ContainerHierarchyTexts }} {{ . }} {{ end }}
+    <p class="pl-1">{{ range .ContainerHierarchyTexts }} {{ . }} {{ end }}</p>
   </div>
   {{ if .Failure.Message }}
   <div class="flex">
-    <div class="size-12" style="background:red"></div>
-    <div style="background:gray">
+    <div class="w-6" style="background:red"></div>
+    <div class="pl-1" style="background:gray">
       State: {{ .State }}, Message: {{ .Failure.Message }}
     </div>
   </div>
   {{ end }}
 </div>
 {{ end }}
-

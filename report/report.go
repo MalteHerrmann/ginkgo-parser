@@ -19,7 +19,7 @@ func GetReportsFromJSON(jsonFile string) ([]ginkgotypes.Report, error) {
 	}
 
 	var reports []ginkgotypes.Report
-	if err := json.Unmarshal(reportBytes, &reports); err != nil {
+	if err = json.Unmarshal(reportBytes, &reports); err != nil {
 		return nil, fmt.Errorf("error parsing JSON: %w", err)
 	}
 

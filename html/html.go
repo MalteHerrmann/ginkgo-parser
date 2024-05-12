@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/MalteHerrmann/ginkgo-parser/report"
 	ginkgotypes "github.com/onsi/ginkgo/v2/types"
 )
 
@@ -30,6 +31,21 @@ func RenderTemplate(reportData ReportData) (string, error) {
 
 	var builder strings.Builder
 	if err := t.ExecuteTemplate(&builder, "index", reportData); err != nil {
+		return "", err
+	}
+
+	return builder.String(), nil
+}
+
+// RenderTemplateNew renders the report data into an HTML document.
+func RenderTemplateNew(nestedContents report.NestedContents) (string, error) {
+	t, err := template.ParseFiles("html/index_new.html")
+	if err != nil {
+		return "", err
+	}
+
+	var builder strings.Builder
+	if err = t.ExecuteTemplate(&builder, "index", nestedContents); err != nil {
 		return "", err
 	}
 

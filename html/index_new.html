@@ -1,0 +1,36 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ginkgo Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+<h1>Ginkgo Test Report</h1>
+{{ range $key, $value := .Contents }}
+    {{ template "nested-content" . }}
+{{ end }}
+</body>
+
+</html>
+{{ end }}
+
+{{ block "nested-content" . }}
+<!-- TODO: hover doesn't work?? -->
+<div class="flex flex-col justify-center p-4 bg-green-800 border-green-800 shadow-md hover:shadow-lg rounded-2xl">
+    <div class=" text-gray-400 flex items-center ">
+        <!-- TODO: make image work?? -->
+        <img class="w-6 mr-2" src="images/passed.jpeg" alt="test passed"/>
+        <p>{{ .LayerDescription }}</p>
+    </div>
+    {{ if .Contents }}
+        {{ range .Contents }}
+            {{ template "nested-content" . }}
+        {{ end }}
+    {{ end }}
+</div>
+{{ end }}

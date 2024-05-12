@@ -20,8 +20,10 @@ var _ = Describe("HTML", func() {
 		r, err := report.GetReportsFromJSON("../report/testdata/example_report.json")
 		Expect(err).ToNot(HaveOccurred(), "error reading JSON file")
 
-		reportData := html.NewReportData(r)
-		htmlString, err := html.RenderTemplate(reportData)
+		reportContents, err := report.BuildNestedContents(r)
+		Expect(err).ToNot(HaveOccurred(), "failed to build nested contents")
+
+		htmlString, err := html.RenderTemplateNew(reportContents)
 		Expect(err).ToNot(HaveOccurred(), "error rendering template")
 		Expect(htmlString).ToNot(BeEmpty(), "rendered template is empty")
 	})

@@ -1,6 +1,8 @@
 package report_test
 
 import (
+	"fmt"
+
 	"github.com/MalteHerrmann/ginkgo-parser/report"
 	ginkgotypes "github.com/onsi/ginkgo/v2/types"
 
@@ -49,6 +51,21 @@ var _ = Describe("Building the nested map", Ordered, func() {
 			HaveKey("it should be skipped"),
 			"expected key to be present",
 		)
+	})
+
+	It("should have the correct layer descriptions", func() {
+		Expect(spec.Contents["Example"].LayerDescription).To(Equal("Example"))
+
+		Expect(spec.Contents["Example"].Contents["it should be true"].LayerDescription).To(Equal("it should be true"))
+		Expect(spec.Contents["Example"].Contents["it should be false"].LayerDescription).To(Equal("it should be false"))
+
+		fmt.Println(spec.Contents["Example"].Contents["Nested table"])
+		Expect(spec.Contents["Example"].Contents["Nested table"].LayerDescription).To(Equal("Nested table"))
+		Expect(spec.Contents["Example"].Contents["Nested table"].Contents["it 1 is 1"].LayerDescription).To(Equal("it 1 is 1"))
+		Expect(spec.Contents["Example"].Contents["Nested table"].Contents["it 1 is 2"].LayerDescription).To(Equal("it 1 is 2"))
+
+		Expect(spec.Contents["Example"].Contents["skipped tests"].LayerDescription).To(Equal("skipped tests"))
+		Expect(spec.Contents["Example"].Contents["skipped tests"].Contents["it should be skipped"].LayerDescription).To(Equal("it should be skipped"))
 	})
 
 	It("should show the correct failed and skipped states", func() {

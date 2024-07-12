@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/MalteHerrmann/ginkgo-parser/report"
 	"github.com/spf13/cobra"
 )
 
@@ -31,10 +30,12 @@ Optionally, an HTML document can be generated.`,
 			return fmt.Errorf("file not found: %s", jsonFile)
 		}
 
-		exportPath := os.Args[1]
+		exportPath := args[1]
 		switch exportType {
 		case ExportTypeMD:
-			return report.ConvertGinkgoReportToMarkdown(jsonFile, exportPath)
+			return ConvertGinkgoReportToMarkdown(jsonFile, exportPath)
+		case ExportTypeHTML:
+			return ConvertGinkgoReportToHTML(jsonFile, exportPath)
 		default:
 			return fmt.Errorf("unsupported export type: %s", exportType)
 		}

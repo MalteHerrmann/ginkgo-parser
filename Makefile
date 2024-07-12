@@ -27,3 +27,10 @@ TEST_PACKAGES=$(shell go list ./... | grep -v '/example-report$$')
 test:
 	go test -mod=readonly $(TEST_PACKAGES)
 
+###############################################################################
+###                                Example                                  ###
+###############################################################################
+
+serve-example:
+	go run . ./report/testdata/example_report.json /tmp/ginkgo-parser-example.html \
+		--type html

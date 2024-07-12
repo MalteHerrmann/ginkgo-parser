@@ -1,8 +1,10 @@
-package report
+package cmd
 
 import (
 	"fmt"
 	"os"
+
+	"github.com/MalteHerrmann/ginkgo-parser/report"
 )
 
 // spacesPerIndentation defines the whitespace to be used per indentation level.
@@ -11,12 +13,12 @@ const spacesPerIndentation = "  "
 // ConvertGinkgoReportToMarkdown parses the given Ginkgo BDD JSON report and writes
 // the resulting markdown to the given export file.
 func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
-	reports, err := GetReportsFromJSON(jsonFile)
+	reports, err := report.GetReportsFromJSON(jsonFile)
 	if err != nil {
 		return fmt.Errorf("error parsing JSON: %w", err)
 	}
 
-	spec, err := BuildNestedContents(reports)
+	spec, err := report.BuildNestedContents(reports)
 	if err != nil {
 		return fmt.Errorf("error building spec map: %w", err)
 	}
@@ -32,7 +34,7 @@ func ConvertGinkgoReportToMarkdown(jsonFile, markdownFile string) error {
 }
 
 // buildMarkdown is a recursive function to build a markdown string from the given map of nested maps.
-func buildMarkdown(spec NestedContents, indentationLevel int) string {
+func buildMarkdown(spec report.NestedContents, indentationLevel int) string {
 	markdown := ""
 	for key, value := range spec.Contents {
 		if len(value.Contents) != 0 {
